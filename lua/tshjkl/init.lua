@@ -40,6 +40,10 @@ local default_config = {
     next = 'j',
     prev = 'k',
     child = 'l',
+    outermost = 'H',
+    last_sibling = '<S-j>'
+    first_sibling = '<S-k>',
+    innermost = 'L',
     toggle_named = '<S-M-n>', -- named mode skips unnamed nodes
   },
   marks = {
@@ -445,16 +449,16 @@ local function keybind(t, binds)
   bind(M.opts.keymaps.prev, prev)
   bind(M.opts.keymaps.parent, parent)
   bind(M.opts.keymaps.child, child)
-  bind('H', outermost)
-  bind('L', innermost)
+  bind(M.opts.keymaps.outermost, outermost)
+  bind(M.opts.keymaps.innermost, innermost)
   bind('b', visual_select_back)
   bind('v', M.opts.select_current_node and nodewise_visual or visual_select)
   bind('a', append) -- I don't think these work with select_current_node
   bind('i', prepend)
   bind('o', open_below)
   bind('<S-o>', open_above)
-  bind('<S-j>', last_sibling)
-  bind('<S-k>', first_sibling)
+  bind(M.opts.keymaps.last_sibling, last_sibling)
+  bind(M.opts.keymaps.first_sibling, first_sibling)
   bind(M.opts.keymaps.toggle_named, toggle_named)
 
   local binds_api = {
